@@ -1,0 +1,109 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Category</div>
+    <div class="page__content shadow p-3 position-relative">
+      <!-- <div class="page__content-data position-absolute text-center"> -->
+        <div class="selectFormat">
+          <h1>Select Style</h1>
+        <input type="radio" id="table" [value]="0" [(ngModel)]="fav_select"  name="fav_select">
+        <label for="table">All Categories</label>
+        <input type="radio" id="card" [value]="1" [(ngModel)]="fav_select" name="fav_select" >
+        <label for="card">Add Category</label>
+        <input type="radio" id="card" [value]="2" [(ngModel)]="fav_select" name="fav_select" >
+        <label for="card">Update Category</label>
+        <input type="radio" id="card" [value]="3" [(ngModel)]="fav_select" name="fav_select" >
+        <label for="card">Delete Category</label>
+      </div>
+         <div *ngIf="fav_select == 0">
+          <table   class=" table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cat of CatList" index=i>
+                <th scope="row">1</th>
+                <td>{{cat.id}}</td>
+                <td>{{cat.name}}</td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>  
+          <div *ngIf="fav_select == 1">
+          <h1>AddCategory</h1>
+          <form #prdFrm="ngForm" (ngSubmit)="saveCategory()">
+              <div class="mb-3">
+                <label for="pName" class="form-label">Category Name</label>
+                <input #CatName="ngModel" type="text" [(ngModel)]="newCategory.name"
+                  class="form-control" [class.is-valid]="CatName.valid" [class.is-invalid]="CatName.invalid && CatName.touched" name="pName" id="PName" placeholder="" required minlength="3">
+                <div [hidden]="CatName.valid || CatName.untouched">
+                  <small *ngIf="CatName.errors?.['required']" id="helpId" class="form-text text-muted d-block">Product Name is Required</small>
+                  <small *ngIf="CatName.errors?.['minlength']" id="helpId2" class="form-text text-muted d-block">Product Name must be 3 letters at least</small>
+                </div>
+              </div>
+             
+              <button [disabled]="prdFrm.invalid" type="submit" class="btn btn-success" >Submit</button>
+            </form>
+            <hr>
+          </div>
+
+    <div *ngIf="fav_select == 2"> 
+          <h1>Update Category</h1>
+<form #prdFrm="ngForm" #temp [(ngModel)]="updateddoudct.id" (ngSubmit)="UpdateCategory(+temp)">
+  <div class="mb-3">
+    <label for="pPrice" class="form-label">Category ID</label>
+    <input type="number" [(ngModel)]="updateddoudct.id"
+      class="form-control" name="pId" id="pId" placeholder="" required >
+    <small id="helpId" class="form-text text-muted"></small>
+  </div>
+  <div class="mb-3">
+      <label for="pName" class="form-label">Product Name</label>
+      <input #prdName="ngModel" type="text" [(ngModel)]="updateddoudct.name"
+        class="form-control" [class.is-valid]="prdName.valid" [class.is-invalid]="prdName.invalid && prdName.touched" name="pName" id="PName" placeholder="" required minlength="3">
+      <div [hidden]="prdName.valid || prdName.untouched">
+        <small *ngIf="prdName.errors?.['required']" id="helpId" class="form-text text-muted d-block">Product Name is Required</small>
+        <small *ngIf="prdName.errors?.['minlength']" id="helpId2" class="form-text text-muted d-block">Product Name must be 3 letters at least</small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="pPrice" class="form-label">Product Price</label>
+      <input type="number" [(ngModel)]="updateddoudct.price"
+        class="form-control" name="pPrice" id="pPrice" placeholder="" required >
+      <small id="helpId" class="form-text text-muted"></small>
+    </div>
+    <div class="mb-3">
+      <label for="pQuant" class="form-label">Product Quantity</label>
+      <input type="number" [(ngModel)]="updateddoudct.quantity"
+        class="form-control" name="pQuant" id="pQuant" placeholder="" required >
+      <small id="helpId" class="form-text text-muted"></small>
+    </div>
+    <div class="mb-3">
+        <label for="pImg" class="form-label" >Product Image</label>
+        <input type="file" (change)="onFileChange($event)"
+          class="form-control" name="pImg" id="pImg" placeholder="" required >
+        <small id="helpId" class="form-text text-muted"></small>
+      </div>
+      <div class="mb-3">
+        <label for="pImg" class="form-label" >Description</label>
+        <input type="text" [(ngModel)]="updateddoudct.description"
+          class="form-control" name="pImg" id="pImg" placeholder="" >
+        <small id="helpId" class="form-text text-muted"></small>
+      </div>
+    <div class="mb-3">
+        <label for="CatSel" class="form-label">Select Category</label>
+        <select class="form-control" [(ngModel)]="updateddoudct.category_Id"
+          name="cat" id="CatSel" title="catgory" >
+          <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+        </select>
+      </div>
+    <button [disabled]="prdFrm.invalid" type="submit" class="btn btn-success" >Submit</button>
+  </form>
+  <hr>
+</div>
+
+        </div>
+      </div>
+<!-- </div> -->
+  
