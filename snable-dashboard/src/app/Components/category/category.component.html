@@ -1,0 +1,107 @@
+
+   <div class="container-fluid">
+    <div class="row">
+  <table class="table table-hover">
+    <thead style="background-color:rgb(18, 18, 236); color:white">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Cat of CategorytList; let i=index">
+        <td></td>
+        <td>{{Cat.name}}</td>
+        <td>
+          <button   (click)="open(content , Cat)" style="background-color: rgb(135, 216, 14); color: white; height: 30px;  width: 40px; border:none; border-radius: 3px; "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+          <button  (click)="openToDelete(contentDelete)" style="background-color:red; color: white;height: 30px;  width: 40px; border:none; border-radius: 3px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+            <!-- To Edit Item  -->
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title"
+                id="modal-basic-title">
+                Edit Category
+              </h4>
+              <button type="button" class="close"
+                  aria-label="Close" (click)=
+                  "modal.dismiss('Cross click')">   
+                <span aria-hidden="true">
+                  ×
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="Name">
+                   Category Name
+                  </label>
+                  <div class="input-group">
+                    <input id="Name" [(ngModel)]="oldCategory.name" class="form-control"   value={{Cat.name}} >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button"
+                class="btn btn-outline-dark"
+                (click)="modal.close('Save click')">
+                Save
+              </button>
+            </div>
+          </ng-template>
+          
+          <!-- To delete Item  -->
+          <ng-template #contentDelete let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title"
+                id="modal-basic-title">
+                Delete Category
+              </h4>
+              <button type="button" class="close"
+                  aria-label="Close" (click)=
+                  "modal.dismiss('Cross click')">
+          
+                <span aria-hidden="true">
+                  ×
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">       
+                    Do you want to delete the {{Cat.name}} ?     
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="close btn btn-outline-dark"
+                  aria-label="Close" (click)=
+                  "modal.dismiss('Cross click')">
+                Yes
+              </button>
+              
+              <button type="button"
+                class="btn btn-outline-dark"
+                (click)="modal.close('Save click')">
+                No
+              </button>
+            </div>
+          </ng-template>
+      
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<script>
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+</script>
