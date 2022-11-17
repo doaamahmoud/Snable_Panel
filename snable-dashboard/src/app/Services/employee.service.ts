@@ -30,7 +30,7 @@ export class EmployeeService {
   }
   UpdateEmployee(id:number, updateCategory:Iemployee):Observable<Iemployee>
   {
-    return this.HttpClient.patch<Iemployee>(`${environment.APIBaseURL}/Employee/UpdateEmployeeByID/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.put<Iemployee>(`${environment.APIBaseURL}/Employee/UpdateEmployeeByID/${id}`, JSON.stringify(updateCategory),this.httpOptions);
   }
   DeleteEmployee(id:Number):Observable<Iemployee>
 {

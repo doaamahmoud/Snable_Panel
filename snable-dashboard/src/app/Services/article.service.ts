@@ -30,7 +30,7 @@ addArticle(NewCategory:Iarticle):Observable<Iarticle>
 }
 UpdateArticle(id:number, updateCategory:Iarticle):Observable<Iarticle>
 {
-  return this.HttpClient.patch<Iarticle>(`${environment.APIBaseURL}/Article/UpdateArticle/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+  return this.HttpClient.put<Iarticle>(`${environment.APIBaseURL}/Article/UpdateArticle/${id}`, JSON.stringify(updateCategory),this.httpOptions);
 }
 DeleteArticle(id:Number):Observable<Iarticle>
 {

@@ -30,7 +30,7 @@ export class CategoryService {
   }
   UpdateCategory(id:number, updateCategory:Icategory):Observable<Icategory>
   {
-    return this.HttpClient.patch<Icategory>(`${environment.APIBaseURL}/Category/UpdateCategory/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.put<Icategory>(`${environment.APIBaseURL}/Category/UpdateCategory/${id}`, JSON.stringify(updateCategory),this.httpOptions);
   }
   DeleteCategory(id:Number):Observable<Icategory>
 {

@@ -1,39 +1,37 @@
-import {AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Carousel, Modal } from 'bootstrap';
-import { CategoryService } from 'src/app/Services/category.service';
-import { Icategory } from 'src/app/ViewModels/icategory';
+import { BranchService } from 'src/app/Services/branch.service';
+import { Ibranch } from 'src/app/ViewModels/ibranch';
+
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
-
+  selector: 'app-branch',
+  templateUrl: './branch.component.html',
+  styleUrls: ['./branch.component.scss']
 })
-export class CategoryComponent implements OnInit{
+export class BranchComponent implements OnInit {
   closeResult = '';
-  CategorytList:Icategory[] | undefined;
+  BranchList:Ibranch[] | undefined;
   testmodel:Modal| undefined
-  oldCategory: Icategory={} as Icategory;
-  NewCategory:Icategory={} as Icategory;
-  id:number=0;
-  constructor( private CategoerService:CategoryService, private modalService: NgbModal, private router:Router) {
-    this.CategorytList=[];
+  oldBranch: Ibranch={} as Ibranch;
+  NewBranch:Ibranch={} as Ibranch;
 
-
-   }
+  constructor(private BranchService:BranchService, private modalService: NgbModal, private router:Router) { 
+    this.BranchList=[];
+  }
 
   ngOnInit(): void {
-    this.CategoerService.getAllCateogories().subscribe(data=>{
-      this.CategorytList=data;
+    this.BranchService.getAllBranches().subscribe(data=>{
+      this.BranchList=data;
 
     });
   }
-  AddNewCategory(content:any){
+  AddNewBranch(content:any){
     this.modalService.open(content,
       {ariaLabelledBy: 'modal-Add-title'}).result.then((result)  => {
-        this.CategoerService.addCategory(this.NewCategory).subscribe(prd=>{
-          console.log(this.NewCategory)
+        this.BranchService.addBranch(this.NewBranch).subscribe(prd=>{
+        
           this.router.navigate(['/Home']);
         });
         
@@ -45,15 +43,17 @@ export class CategoryComponent implements OnInit{
   }
 
 
-  open(content : any,category:Icategory) {
-    this.oldCategory.name=category.name;
+  open(content : any,branch:Ibranch) {
+    this.oldBranch.name=branch.name;
+    this.oldBranch.address=branch.address;
+    this.oldBranch.email=branch.email;
+    this.oldBranch.phone1=branch.phone1;
+    this.oldBranch.phone2=branch.phone2;
+
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-basic-title'}).result.then((result)  => {
-    console.log(category);
-    console.log(result);
-    this.CategoerService.UpdateCategory(category.id, this.oldCategory).subscribe(prd=>{
+    this.BranchService.UpdateBranch(branch.id, this.oldBranch).subscribe(prd=>{
       this.router.navigate(['/Home']);
-      console.log(category);
 
     });
       this.closeResult = `Closed with: ${result}`;
@@ -64,14 +64,12 @@ export class CategoryComponent implements OnInit{
     });
   
   }
-  openToDelete(content : any, category:Icategory) {
+  openToDelete(content : any, branch:Ibranch) {
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-Delete-title'}).result.then((result)  => {
-   
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.CategoerService.DeleteCategory(category.id).subscribe(prd=>{
-        console.log(category.id)
+      this.BranchService.DeleteBranch(branch.id).subscribe(prd=>{
         this.router.navigate(['/Home']);
       });
       this.closeResult = 
@@ -88,6 +86,4 @@ export class CategoryComponent implements OnInit{
       return `with: ${reason}`;
     }
   }
-
 }
-

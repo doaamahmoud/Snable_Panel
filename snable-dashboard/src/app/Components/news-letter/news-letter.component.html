@@ -1,0 +1,29 @@
+
+   <div class="container-fluid">
+
+<div class="row">
+   <table class=" table table-hover">
+  <thead class="bg-primary text-white" >
+    <tr>
+      <th scope="col"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></th>
+      <th scope="col"><i class="fa fa-database" aria-hidden="true"></i> Name</th>
+      <th scope="col"><i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let letter of NewLetterList; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{letter.name}}</td>
+      <td>{{letter.email}}</td>
+    </tr>
+  </tbody>
+   </table>
+</div>
+</div>
+<script>
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+myModal.addEventListener('shown.bs.modal', () => {
+myInput.focus()
+})
+</script>

@@ -1,0 +1,194 @@
+
+   <div class="container-fluid">
+
+    <button   (click)="AddNewBranch(content)" class="btn btn-primary mb-3 " ><i class="fa fa-plus" aria-hidden="true"></i> Add Branch</button>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title"
+          id="modal-Add-title">
+          Add New Branch
+        </h4>
+        <button type="button" class="close"
+            aria-label="Close" (click)=
+            "modal.dismiss('Cross click')">   
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="Name">
+             Branch Name
+            </label>
+            <div class="input-group">
+              <input id="Name" [(ngModel)]="NewBranch.name" name="BranchName" class="form-control" required>
+            </div>
+            <label for="Address">
+                Address
+            </label>
+               <div class="input-group">
+                 <input id="Address" [(ngModel)]="NewBranch.address" name="BranchAddress" class="form-control" required>
+               </div>
+               <label for="Emial">
+                Email
+               </label>
+               <div class="input-group">
+                 <input id="Email" type="email" [(ngModel)]="NewBranch.email" name="BranchEmail" class="form-control" required>
+               </div> 
+               <label for="phone1">
+                Phone 1
+               </label>
+               <div class="input-group">
+                 <input id="phone1" type="number" [(ngModel)]="NewBranch.phone1" name="BranchPhone1" class="form-control" required>
+               </div>  
+               <label for="phone2">
+                Phone 2
+               </label>
+               <div class="input-group">
+                 <input id="phone2" type="number" [(ngModel)]="NewBranch.phone2" name="BranchPhone2" class="form-control" >
+               </div>   
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Save click')">
+          Save
+        </button>
+      </div>
+    </ng-template>
+
+<div class="row">
+   <table class=" table table-hover">
+  <thead class="bg-primary text-white" >
+    <tr>
+      <th scope="col"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></th>
+      <th scope="col"><i class="fa fa-database" aria-hidden="true"></i> Name</th>
+      <th scope="col"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</th>
+      <th scope="col"><i class="fa fa-refresh" aria-hidden="true"></i> Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let brn of BranchList; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{brn.name}}</td>
+      <td>{{brn.address}}</td>
+      <td>
+        <button   (click)="open(content , brn)" style="background-color: rgb(135, 216, 14); color: white; height: 30px;  width: 40px; border:none; border-radius: 3px; "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button  (click)="openToDelete(contentDelete, brn)" style="background-color:red; color: white;height: 30px;  width: 40px; border:none; border-radius: 3px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+          <!-- To Edit Item  -->
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title"
+              id="modal-basic-title">
+              Edit Category
+            </h4>
+            <button type="button" class="close"
+                aria-label="Close" (click)=
+                "modal.dismiss('Cross click')">   
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="Name">
+                Branch Name
+                </label>
+                <div class="input-group">
+                  <input id="Name" [(ngModel)]="oldBranch.name" name="BranchName" class="form-control"   value={{brn.name}} >
+                </div>
+                <label for="address">
+                    Address
+                </label>
+                   <div class="input-group">
+                     <input id="address" [(ngModel)]="oldBranch.address" name="BranchAddress" class="form-control" value={{brn.address}}>
+                   </div>
+                   <label for="email">
+                    Email
+                   </label>
+                   <div class="input-group">
+                     <input id="email" [(ngModel)]="oldBranch.email" name="BranchEmail" class="form-control" value={{brn.email}} >
+                   </div> 
+                   <label for="phone1">
+                    Phone 1
+                   </label>
+                   <div class="input-group">
+                     <input id="phone1" [(ngModel)]="oldBranch.phone1" name="BranchPhone1" class="form-control" value={{brn.phone1}} >
+                   </div>  
+                   <label for="phone2">
+                    Phone 2
+                   </label>
+                   <div class="input-group">
+                     <input id="phone2" [(ngModel)]="oldBranch.phone2" name="BranchPhone2" class="form-control" value={{brn.phone2}} >
+                   </div>   
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')">
+              Save
+            </button>
+          </div>
+        </ng-template>
+        
+        <!-- To delete Item  -->
+        <ng-template #contentDelete let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title"
+              id="modal-Delete-title">
+              Delete Branch
+            </h4>
+            <!-- <button type="button" class="close"
+                aria-label="Close" (click)=
+                "modal.dismiss('Cross click')">
+        
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">       
+                  Do you want to delete the {{brn.name}} ?     
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="close btn btn-outline-dark"
+                aria-label="Close" (click)=
+                "modal.dismiss('Cross click')">
+              Yes
+            </button>
+            
+            <button type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')">
+              No
+            </button>
+          </div>
+        </ng-template>
+    
+        
+      </td>
+    </tr>
+  </tbody>
+   </table>
+</div>
+</div>
+<script>
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+myModal.addEventListener('shown.bs.modal', () => {
+myInput.focus()
+})
+</script>

@@ -30,7 +30,7 @@ export class BranchService {
   }
   UpdateBranch(id:number, updateCategory:Ibranch):Observable<Ibranch>
   {
-    return this.HttpClient.patch<Ibranch>(`${environment.APIBaseURL}/Branch/UpdateBranch/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.put<Ibranch>(`${environment.APIBaseURL}/Branch/UpdateBranch/${id}`, JSON.stringify(updateCategory),this.httpOptions);
   }
   DeleteBranch(id:Number):Observable<Ibranch>
 {

@@ -9,6 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './Components/layout/layout.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BranchComponent } from './Components/branch/branch.component';
+import { EmployeeComponent } from './Components/employee/employee.component';
+import { NewsLetterComponent } from './Components/news-letter/news-letter.component';
+import { ArticleComponent } from './Components/article/article.component';
+import { BannerComponent } from './Components/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +21,11 @@ import { FormsModule } from '@angular/forms';
     CategoryComponent,
     HomeComponent,
     LayoutComponent,
+    BranchComponent,
+    EmployeeComponent,
+    NewsLetterComponent,
+    ArticleComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

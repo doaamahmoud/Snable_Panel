@@ -30,7 +30,7 @@ export class NewletterService {
   }
   UpdateNewsLetter(id:number, updateCategory:Inewletter):Observable<Inewletter>
   {
-    return this.HttpClient.patch<Icategory>(`${environment.APIBaseURL}/NewsLetter/UpdateNewsLetter/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.put<Inewletter>(`${environment.APIBaseURL}/NewsLetter/UpdateNewsLetter/${id}`, JSON.stringify(updateCategory),this.httpOptions);
   }
   DeleteNewsLetter(id:Number):Observable<Inewletter>
 {

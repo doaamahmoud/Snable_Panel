@@ -33,7 +33,7 @@ addProduct(NewCategory:IProduct):Observable<IProduct>
 }
 UpdateProduct(id:number, updateCategory:IProduct):Observable<IProduct>
 {
-  return this.HttpClient.patch<IProduct>(`${environment.APIBaseURL}/Product/UpdateProduct/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+  return this.HttpClient.put<IProduct>(`${environment.APIBaseURL}/Product/UpdateProduct/${id}`, JSON.stringify(updateCategory),this.httpOptions);
 }
 DeleteProduct(id:Number):Observable<IProduct>
 {

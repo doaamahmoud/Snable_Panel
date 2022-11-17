@@ -1,21 +1,58 @@
 
    <div class="container-fluid">
-    <div class="row">
-  <table class="table table-hover">
-    <thead style="background-color:rgb(18, 18, 236); color:white">
+
+      <button   (click)="AddNewCategory(content)" class="btn btn-primary mb-3 " ><i class="fa fa-plus" aria-hidden="true"></i> Add Category</button>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title"
+            id="modal-Add-title">
+            Add New Category
+          </h4>
+          <button type="button" class="close"
+              aria-label="Close" (click)=
+              "modal.dismiss('Cross click')">   
+            <span aria-hidden="true">
+              ×
+            </span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="Name">
+               Category Name
+              </label>
+              <div class="input-group">
+                <input id="Name" [(ngModel)]="NewCategory.name" name="CtaegoryName" class="form-control" required >
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">
+            Save
+          </button>
+        </div>
+      </ng-template>
+
+<div class="row">
+     <table class=" table table-hover">
+    <thead class="bg-primary text-white" >
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Operation</th>
+        <th scope="col"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></th>
+        <th scope="col"><i class="fa fa-database" aria-hidden="true"></i> Name</th>
+        <th scope="col"><i class="fa fa-refresh" aria-hidden="true"></i> Operations</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let Cat of CategorytList; let i=index">
-        <td></td>
+        <td>{{i+1}}</td>
         <td>{{Cat.name}}</td>
         <td>
           <button   (click)="open(content , Cat)" style="background-color: rgb(135, 216, 14); color: white; height: 30px;  width: 40px; border:none; border-radius: 3px; "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-          <button  (click)="openToDelete(contentDelete)" style="background-color:red; color: white;height: 30px;  width: 40px; border:none; border-radius: 3px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button  (click)="openToDelete(contentDelete, Cat)" style="background-color:red; color: white;height: 30px;  width: 40px; border:none; border-radius: 3px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
             <!-- To Edit Item  -->
           <ng-template #content let-modal>
@@ -39,7 +76,7 @@
                    Category Name
                   </label>
                   <div class="input-group">
-                    <input id="Name" [(ngModel)]="oldCategory.name" class="form-control"   value={{Cat.name}} >
+                    <input id="Name" [(ngModel)]="oldCategory.name" name="CtaegoryName" class="form-control"   value={{Cat.name}} >
                   </div>
                 </div>
               </form>
@@ -57,17 +94,17 @@
           <ng-template #contentDelete let-modal>
             <div class="modal-header">
               <h4 class="modal-title"
-                id="modal-basic-title">
+                id="modal-Delete-title">
                 Delete Category
               </h4>
-              <button type="button" class="close"
+              <!-- <button type="button" class="close"
                   aria-label="Close" (click)=
                   "modal.dismiss('Cross click')">
           
                 <span aria-hidden="true">
                   ×
                 </span>
-              </button>
+              </button> -->
             </div>
             <div class="modal-body">
               <form>
@@ -95,7 +132,7 @@
         </td>
       </tr>
     </tbody>
-  </table>
+     </table>
 </div>
 </div>
 <script>
