@@ -17,23 +17,26 @@ export class SupcategoryService {
   }
 }
 
-  getAllCateogories():Observable<ISupcategory[]>{
-    return this.HttpClient.get<ISupcategory[]>(`${environment.APIBaseURL}/Category/GetAllCategories`);
+  getAllSupCateogories():Observable<ISupcategory[]>{
+    return this.HttpClient.get<ISupcategory[]>(`${environment.APIBaseURL}/SupCategory/GetAllSupCategories`);
    }
   
-  getCategoryByID(ID:number):Observable<ISupcategory>{
-      return this.HttpClient.get<ISupcategory>(`${environment.APIBaseURL}/Category/GetCategoryById/${ID}`)
+  getSupCategoryByID(ID:number):Observable<ISupcategory>{
+      return this.HttpClient.get<ISupcategory>(`${environment.APIBaseURL}/SupCategory/GetSupCategoryById/${ID}`)
    }
-  addCategory(NewCategory:ISupcategory):Observable<ISupcategory>
-  {
-    return this.HttpClient.post<ISupcategory>(`${environment.APIBaseURL}/Category/AddCategory`, JSON.stringify(NewCategory),this.httpOptions);
+   getSupCategoryByCategoryID(catID:number):Observable<ISupcategory[]>{
+    return this.HttpClient.get<ISupcategory[]>(`${environment.APIBaseURL}/SupCategory/GetSupCategoriesByCategorID?CatID=${catID}`)
   }
-  UpdateCategory(id:number, updateCategory:ISupcategory):Observable<ISupcategory>
+  addSupCategory(NewCategory:ISupcategory):Observable<ISupcategory>
   {
-    return this.HttpClient.put<ISupcategory>(`${environment.APIBaseURL}/Category/UpdateCategory/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.post<ISupcategory>(`${environment.APIBaseURL}/SupCategory/AddSupCategory`, JSON.stringify(NewCategory),this.httpOptions);
   }
-  DeleteCategory(id:Number):Observable<ISupcategory>
+  UpdateSupCategory(id:number, updateCategory:ISupcategory):Observable<ISupcategory>
+  {
+    return this.HttpClient.put<ISupcategory>(`${environment.APIBaseURL}/SupCategory/UpdateSupCategory/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+  }
+  DeleteSupCategory(id:Number):Observable<ISupcategory>
 {
-  return this.HttpClient.delete<ISupcategory>(`${environment.APIBaseURL}/Category/DeleteCategoryByID/${id}`);
+  return this.HttpClient.delete<ISupcategory>(`${environment.APIBaseURL}/SupCategory/DeleteSupCategoryByID/${id}`);
 }
 }

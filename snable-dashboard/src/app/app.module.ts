@@ -14,6 +14,9 @@ import { EmployeeComponent } from './Components/employee/employee.component';
 import { NewsLetterComponent } from './Components/news-letter/news-letter.component';
 import { ArticleComponent } from './Components/article/article.component';
 import { BannerComponent } from './Components/banner/banner.component';
+import { SupCategoryComponent } from './Components/sup-category/sup-category.component';
+import { ProductComponent } from './Components/product/product.component';
+import { BodyComponent } from './Components/body/body.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,10 @@ import { BannerComponent } from './Components/banner/banner.component';
     NewsLetterComponent,
     ArticleComponent,
     BannerComponent,
+    SupCategoryComponent,
+    ProductComponent,
+    BodyComponent,
+   
   ],
   imports: [
     BrowserModule,

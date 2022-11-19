@@ -1,0 +1,156 @@
+<div class="container-fluid">
+    
+    <!-- <div class="mb-3 col">
+        <div class="category"> 
+         <button (click)="showSupCategory(cat.id)" class="m-2 " *ngFor="let cat of CategorytList" [value]="cat.id">{{cat.name}}</button>
+         </div> 
+     </div> -->
+
+     <div class="mb-3">
+        <label for="" class="form-label">Select Category</label>
+        <select class="form-control" name="cat" id="CatSel" title="catgory"
+            [(ngModel)]="selectedCatID" #show (change)="showSupCategory(show.value)">
+          <option value="0">Select All</option>
+          <option *ngFor="let cat of CategorytList" [value]="cat.id">{{cat.name}}</option>
+        </select>
+      </div>
+
+    <button   (click)="AddNewSupCategory(content)" class="btn btn-primary mb-3 " ><i class="fa fa-plus" aria-hidden="true"></i> Add SupCategory</button>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title"
+          id="modal-Add-title">
+          Add New SupCategory
+        </h4>
+        <button type="button" class="close"
+            aria-label="Close" (click)=
+            "modal.dismiss('Cross click')">   
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="" class="form-label">Select Category</label>
+            <select  class="form-control" name="cat" id="CatSel" title="catgory" [(ngModel)]="NewSupCategory.Category_Id">
+              <option  *ngFor="let cat of CategorytList" [value]="cat.id" >{{cat.name}}</option>
+            </select>
+
+            <label for="Name">
+             SupCategory Name
+            </label>
+            <div class="input-group">
+              <input id="Name" [(ngModel)]="NewSupCategory.name" name="SupCategoryName" class="form-control" required>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+          class="btn btn-outline-dark"
+          (click)="modal.close('Save click')">
+          Save
+        </button>
+      </div>
+    </ng-template>
+
+<div class="row">
+   <table class=" table table-hover">
+  <thead class="bg-primary text-white" >
+    <tr>
+      <th scope="col"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></th>
+      <th scope="col"><i class="fa fa-database" aria-hidden="true"></i> Name</th>
+      <th scope="col"><i class="fa fa-refresh" aria-hidden="true"></i> Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let SupCat of FilterSupCategorytList; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{SupCat.name}}</td>
+      <td>
+        <button   (click)="open(content , SupCat)" style="background-color: rgb(135, 216, 14); color: white; height: 30px;  width: 40px; border:none; border-radius: 3px; "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button  (click)="openToDelete(contentDelete, SupCat)" style="background-color:red; color: white;height: 30px;  width: 40px; border:none; border-radius: 3px;"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+          <!-- To Edit Item  -->
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title"
+              id="modal-basic-title">
+              Edit SupCategory
+            </h4>
+            <button type="button" class="close"
+                aria-label="Close" (click)=
+                "modal.dismiss('Cross click')">   
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="Name">
+                SupCategory Name
+                </label>
+                <div class="input-group">
+                  <input id="Name" [(ngModel)]="oldSupCategory.name" name="SupCategoryName" class="form-control"   value={{SupCat.name}} >
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')">
+              Save
+            </button>
+          </div>
+        </ng-template>
+        
+        <!-- To delete Item  -->
+        <ng-template #contentDelete let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title"
+              id="modal-Delete-title">
+              Delete SupCategory
+            </h4>
+      
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">       
+                  Do you want to delete the {{SupCat.name}} ?     
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="close btn btn-outline-dark"
+                aria-label="Close" (click)=
+                "modal.dismiss('Cross click')">
+              Yes
+            </button>
+            
+            <button type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')">
+              No
+            </button>
+          </div>
+        </ng-template>
+    
+        
+      </td>
+    </tr>
+  </tbody>
+   </table>
+</div>
+</div>
+<script>
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+myModal.addEventListener('shown.bs.modal', () => {
+myInput.focus()
+})
+</script>

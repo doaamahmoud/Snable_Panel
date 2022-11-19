@@ -6,6 +6,6 @@ export interface IProduct {
     quantity:number;
     image:string;
     description:string;
-    category_Id:number;
+    SupCategory_Id:number;
     url:SafeUrl;
 }
