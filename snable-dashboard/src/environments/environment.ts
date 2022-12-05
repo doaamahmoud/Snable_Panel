@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIBaseURL:"https://localhost:7161/api"
+  APIBaseURL:"http://infosmartvision-001-site1.ftempurl.com/sanabelapi/api"
 };
 
 /*
@@ -14,4 +14,5 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
+
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

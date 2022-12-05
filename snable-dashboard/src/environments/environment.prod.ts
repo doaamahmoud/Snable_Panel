@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  APIBaseURL:"https://localhost:7161/api"
+  APIBaseURL:"http://infosmartvision-001-site1.ftempurl.com/sanabelapi/api"
 };

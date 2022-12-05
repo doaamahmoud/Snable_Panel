@@ -10,7 +10,7 @@
         </h4>
         <button type="button" class="close"
             aria-label="Close" (click)=
-            "modal.dismiss('Cross click')">   
+            "modal.dismiss('Cross click')">
           <span aria-hidden="true">
             ×
           </span>
@@ -29,15 +29,20 @@
                 Employee Image
             </label>
                <div class="input-group">
+<<<<<<< HEAD
                  <input id="Image" type="file" [(ngModel)]="NewEmployee.image"  name="EmployeeImage" class="form-control" required>
+=======
+                 <input id="Image" type="file" name="EmployeeImage" [(ngModel)]="NewEmployee.image" (change)="onFileChange($event)"
+                 class="form-control" required >
+>>>>>>> a94665c82f1ae820d010f46b87d692fda0b2bed4
                </div>
                <label for="Postion">
                 Postion
                </label>
                <div class="input-group">
                  <input  id="Postion" [(ngModel)]="NewEmployee.position" name="EmployeePosition" class="form-control" required>
-               </div> 
-              
+               </div>
+
           </div>
         </form>
       </div>
@@ -80,7 +85,7 @@
             </h4>
             <button type="button" class="close"
                 aria-label="Close" (click)=
-                "modal.dismiss('Cross click')">   
+                "modal.dismiss('Cross click')">
               <span aria-hidden="true">
                 ×
               </span>
@@ -106,8 +111,8 @@
                    </label>
                    <div class="input-group">
                      <input id="Position" [(ngModel)]="oldEmployee.position" name="EmployeePosition" class="form-control" value={{emp.position}} >
-                   </div> 
-                  
+                   </div>
+
               </div>
             </form>
           </div>
@@ -119,7 +124,7 @@
             </button>
           </div>
         </ng-template>
-        
+
         <!-- To delete Item  -->
         <ng-template #contentDelete let-modal>
           <div class="modal-header">
@@ -130,7 +135,7 @@
             <!-- <button type="button" class="close"
                 aria-label="Close" (click)=
                 "modal.dismiss('Cross click')">
-        
+
               <span aria-hidden="true">
                 ×
               </span>
@@ -138,8 +143,8 @@
           </div>
           <div class="modal-body">
             <form>
-              <div class="form-group">       
-                  Do you want to delete the {{emp.name}} ?     
+              <div class="form-group">
+                  Do you want to delete the {{emp.name}} ?
               </div>
             </form>
           </div>
@@ -149,7 +154,7 @@
                 "modal.dismiss('Cross click')">
               Yes
             </button>
-            
+
             <button type="button"
               class="btn btn-outline-dark"
               (click)="modal.close('Save click')">
@@ -157,8 +162,8 @@
             </button>
           </div>
         </ng-template>
-    
-        
+
+
       </td>
     </tr>
   </tbody>

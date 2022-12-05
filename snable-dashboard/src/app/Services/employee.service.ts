@@ -9,28 +9,46 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeService {
 
-    private httpOptions
-  constructor( private HttpClient:HttpClient ) { 
+  private httpOptions
+  constructor( private HttpClient:HttpClient ) {
     this.httpOptions={
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      })    
+      })
+    }
   }
-}
+
+  private httpOptionsForm ={
+    headers: new HttpHeaders({
+      'Content-Type': 'multipart/form-data;',
+      'enctype': 'multipart/form-data'
+
+    })}
+
+
   getEmployees():Observable<Iemployee[]>{
     return this.HttpClient.get<Iemployee[]>(`${environment.APIBaseURL}/Employee/GetAllEmployees`);
    }
-  
+
   getEmployeeByID(ID:number):Observable<Iemployee>{
       return this.HttpClient.get<Iemployee>(`${environment.APIBaseURL}/Employee/GetEmployeeByID/${ID}`)
    }
-  addEmployee(NewCategory:Iemployee):Observable<Iemployee>
+
+
+  addEmployee(NewEmployee:Iemployee, image:any):Observable<Iemployee>
   {
-    return this.HttpClient.post<Iemployee>(`${environment.APIBaseURL}/Employee/AddEmployee`, JSON.stringify(NewCategory),this.httpOptions);
+    var formData: any = new FormData();
+    formData.append("name", NewEmployee.name);
+    formData.append("position", NewEmployee.position);
+    formData.append('image', image[0]);
+    return this.HttpClient.post<any>(`${environment.APIBaseURL}/Employee/AddEmployee`,
+    formData);
   }
-  UpdateEmployee(id:number, updateCategory:Iemployee):Observable<Iemployee>
+
+  UpdateEmployee(id:number, UpdateEmployee:Iemployee):Observable<Iemployee>
   {
-    return this.HttpClient.put<Iemployee>(`${environment.APIBaseURL}/Employee/UpdateEmployeeByID/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.put<Iemployee>(`${environment.APIBaseURL}/Employee/UpdateEmployeeByID/${id}`,
+    JSON.stringify(UpdateEmployee),this.httpOptions);
   }
   DeleteEmployee(id:Number):Observable<Iemployee>
 {

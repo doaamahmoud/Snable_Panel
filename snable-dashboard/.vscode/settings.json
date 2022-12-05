@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a238db0c-f026-461a-89b3-06317df34a8f/resourceGroups/SanableGroup/subscriptions/a238db0c-f026-461a-89b3-06317df34a8f/resourceGroups/SanableGroup/providers/Microsoft.Web/sites/SanableCP",
+    "appService.deploySubpath": "."
+}

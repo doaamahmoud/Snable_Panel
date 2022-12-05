@@ -12,14 +12,19 @@ import { Iemployee } from 'src/app/ViewModels/iemployee';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
+  public base64Image!: string | '';
   closeResult = '';
   EmployeeList:Iemployee[] | undefined;
   testmodel:Modal| undefined
   oldEmployee: Iemployee={} as Iemployee;
   NewEmployee:Iemployee={} as Iemployee;
-  constructor(private EmployeeService:EmployeeService, private modalService: NgbModal, private router:Router,  private San:DomSanitizer) { 
+  image: any;
+
+  constructor(private EmployeeService:EmployeeService, private modalService: NgbModal, private router:Router,  private San:DomSanitizer) {
     this.EmployeeList=[];
   }
+
+
 
   ngOnInit(): void {
     this.EmployeeService.getEmployees().subscribe(data=>{
@@ -28,18 +33,32 @@ export class EmployeeComponent implements OnInit {
       element.url=this.San.bypassSecurityTrustUrl('data:image/png;base64,'+element.image)
     });
   })
+<<<<<<< HEAD
   }
   
+=======
+}
+
+
+onFileChange(event:any){
+  this.image = event.target.files;
+  console.log(event);
+}
+
+
+>>>>>>> a94665c82f1ae820d010f46b87d692fda0b2bed4
   AddNewEmployee(content:any){
     this.modalService.open(content,
-      {ariaLabelledBy: 'modal-Add-title'}).result.then((result)  => {
-        this.EmployeeService.addEmployee(this.NewEmployee).subscribe(prd=>{
+      {ariaLabelledBy: 'modal-Add-title'}).result.then((r)  => {
+
+
+        this.EmployeeService.addEmployee(this.NewEmployee,this.image).subscribe(prd=>{
           this.router.navigate(['/Home']);
         });
-        
-         this.closeResult = `Closed with: ${result}`;
+
+         this.closeResult = `Closed with: ${r}`;
        }, (reason) => {
-         this.closeResult = 
+         this.closeResult =
             `Dismissed ${this.getDismissReason(reason)}`;
        });
   }
@@ -58,11 +77,11 @@ export class EmployeeComponent implements OnInit {
     });
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      
-      this.closeResult = 
+
+      this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
-  
+
   }
   openToDelete(content : any, employee:Iemployee) {
     this.modalService.open(content,
@@ -72,7 +91,7 @@ export class EmployeeComponent implements OnInit {
       this.EmployeeService.DeleteEmployee(employee.id).subscribe(prd=>{
         this.router.navigate(['/Home']);
       });
-      this.closeResult = 
+      this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
