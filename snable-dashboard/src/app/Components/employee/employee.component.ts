@@ -28,7 +28,8 @@ export class EmployeeComponent implements OnInit {
       element.url=this.San.bypassSecurityTrustUrl('data:image/png;base64,'+element.image)
     });
   })
-} 
+  }
+  
   AddNewEmployee(content:any){
     this.modalService.open(content,
       {ariaLabelledBy: 'modal-Add-title'}).result.then((result)  => {

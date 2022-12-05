@@ -24,14 +24,14 @@ export class BranchComponent implements OnInit {
   ngOnInit(): void {
     this.BranchService.getAllBranches().subscribe(data=>{
       this.BranchList=data;
-
+     
     });
-  }
+  } 
   AddNewBranch(content:any){
     this.modalService.open(content,
       {ariaLabelledBy: 'modal-Add-title'}).result.then((result)  => {
         this.BranchService.addBranch(this.NewBranch).subscribe(prd=>{
-        
+          console.log(this.NewBranch);
           this.router.navigate(['/Home']);
         });
         

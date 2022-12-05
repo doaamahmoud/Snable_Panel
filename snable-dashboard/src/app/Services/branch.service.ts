@@ -24,13 +24,13 @@ export class BranchService {
   getBranchByID(ID:number):Observable<Ibranch>{
       return this.HttpClient.get<Ibranch>(`${environment.APIBaseURL}/Branch/GetBranchByID/${ID}`)
    }
-  addBranch(NewCategory:Ibranch):Observable<Ibranch>
+  addBranch(NewBranch:Ibranch):Observable<Ibranch>
   {
-    return this.HttpClient.post<Ibranch>(`${environment.APIBaseURL}/Branch/AddBranch`, JSON.stringify(NewCategory),this.httpOptions);
+    return this.HttpClient.post<Ibranch>(`${environment.APIBaseURL}/Branch/AddBranch`, JSON.stringify(NewBranch),this.httpOptions);
   }
-  UpdateBranch(id:number, updateCategory:Ibranch):Observable<Ibranch>
+  UpdateBranch(id:number, updateBranch:Ibranch):Observable<Ibranch>
   {
-    return this.HttpClient.put<Ibranch>(`${environment.APIBaseURL}/Branch/UpdateBranch/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+    return this.HttpClient.put<Ibranch>(`${environment.APIBaseURL}/Branch/UpdateBranch/${id}`, JSON.stringify(updateBranch),this.httpOptions);
   }
   DeleteBranch(id:Number):Observable<Ibranch>
 {
