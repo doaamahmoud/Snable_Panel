@@ -18,6 +18,7 @@ export class ArticleComponent implements OnInit {
   testmodel:Modal| undefined
   oldArticle: Iarticle={} as Iarticle;
   NewArticle:Iarticle={} as Iarticle;
+  image:any;
   constructor(private ArticleService:ArticleService, private modalService: NgbModal, private router:Router,  private San:DomSanitizer) { 
     this.ArticleList=[];
   }
@@ -30,6 +31,11 @@ export class ArticleComponent implements OnInit {
     });
   })
 } 
+
+onFileChange(event:any){
+  this.image = event.target.files;
+  console.log(event);
+}
 
 AddNewArticle(content:any){
   this.modalService.open(content,

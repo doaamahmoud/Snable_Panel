@@ -4,7 +4,7 @@ export interface IProduct {
     name:string;
     price:number;
     quantity:number;
-    image:string;
+    image:File;
     description:string;
     SupCategory_Id:number;
     url:SafeUrl;

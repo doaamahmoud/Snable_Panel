@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
   oldProduct: IProduct={} as IProduct;
   NewProduct:IProduct={} as IProduct;
   selectedSupCatID:number=0;
-
+  image: any;
   constructor( private SupCategoerService:SupcategoryService,private ProductService:ProductService, private modalService: NgbModal, private router:Router) {
     this.FilterProductstList=[];
 
@@ -34,6 +34,11 @@ export class ProductComponent implements OnInit {
       this.FilterProductstList=data;
     });
 
+  }
+
+  onFileChange(event:any){
+    this.image = event.target.files;
+    console.log(event);
   }
 
   showProducts(SupCatid:string){

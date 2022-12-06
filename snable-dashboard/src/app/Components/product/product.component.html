@@ -54,7 +54,7 @@
                 Image
                </label>
                <div class="input-group">
-                 <input id="Image"  type="file" [(ngModel)]="NewProduct.image" name="ProductImage" class="form-control" required>
+                 <input id="Image"  type="file" [(ngModel)]="NewProduct.image" (change)="onFileChange($event)" name="ProductImage" class="form-control" required>
                </div>
                <label for="Description">
                 Description

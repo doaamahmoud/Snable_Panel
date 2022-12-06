@@ -25,28 +25,21 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
     this.EmployeeService.getEmployees().subscribe(data=>{
       this.EmployeeList=data;
+      console.log(this.EmployeeList)
     this.EmployeeList.forEach(element => {
       element.url=this.San.bypassSecurityTrustUrl('data:image/png;base64,'+element.image)
     });
   })
-<<<<<<< HEAD
   }
-  
-=======
-}
-
 
 onFileChange(event:any){
   this.image = event.target.files;
   console.log(event);
 }
 
-
->>>>>>> a94665c82f1ae820d010f46b87d692fda0b2bed4
   AddNewEmployee(content:any){
     this.modalService.open(content,
       {ariaLabelledBy: 'modal-Add-title'}).result.then((r)  => {
