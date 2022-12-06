@@ -6,7 +6,7 @@ import { Modal } from 'bootstrap';
 import { ISupcategory } from 'src/app/ViewModels/i-supcategory';
 import { SupcategoryService } from 'src/app/Services/supcategory.service';
 import { ProductService } from 'src/app/Services/product.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
   NewProduct:IProduct={} as IProduct;
   selectedSupCatID:number=0;
   image: any;
-  constructor( private SupCategoerService:SupcategoryService,private ProductService:ProductService, private modalService: NgbModal, private router:Router) {
+  constructor( private SupCategoerService:SupcategoryService,private ProductService:ProductService, private modalService: NgbModal, private router:Router , private San: DomSanitizer) {
     this.FilterProductstList=[];
 
    }
@@ -32,6 +32,9 @@ export class ProductComponent implements OnInit {
     });
     this.ProductService.getAllProducts().subscribe(data=>{
       this.FilterProductstList=data;
+      this.FilterProductstList.forEach(element => {
+        element.url=this.San.bypassSecurityTrustUrl('data:image/png;base64,'+element.image)
+      });
     });
 
   }
@@ -45,7 +48,7 @@ export class ProductComponent implements OnInit {
     console.log(+SupCatid);
     this.ProductService.getProductsBySupCategoryID(+SupCatid).subscribe(data=>{
       this.FilterProductstList=data;
- 
+
     });
     if(this.selectedSupCatID==0){
       this.ProductService.getAllProducts().subscribe(data=>{
@@ -65,7 +68,7 @@ export class ProductComponent implements OnInit {
 
          this.closeResult = `Closed with: ${result}`;
        }, (reason) => {
-         this.closeResult = 
+         this.closeResult =
             `Dismissed ${this.getDismissReason(reason)}`;
        });
   }
@@ -81,22 +84,22 @@ export class ProductComponent implements OnInit {
     });
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      
-      this.closeResult = 
+
+      this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
-  
+
   }
   openToDelete(content : any, product:IProduct) {
     this.modalService.open(content,
    {ariaLabelledBy: 'modal-Delete-title'}).result.then((result)  => {
-   
+
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.ProductService.DeleteProduct(product.id).subscribe(prd=>{
         this.router.navigate(['/Home']);
       });
-      this.closeResult = 
+      this.closeResult =
          `Dismissed ${this.getDismissReason(reason)}`;
     });
   }

@@ -10,11 +10,11 @@ import { Iarticle } from '../ViewModels/iarticle';
 export class ArticleService {
 
   private httpOptions
-  constructor( private HttpClient:HttpClient ) { 
+  constructor( private HttpClient:HttpClient ) {
     this.httpOptions={
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      })    
+      })
   }
 }
 getAllArticles():Observable<Iarticle[]>{
@@ -29,6 +29,8 @@ addArticle(NewCategory:Iarticle, image:any):Observable<Iarticle>
   var formData: any = new FormData();
   formData.append("name", NewCategory.name);
   formData.append('image', image[0]);
+  formData.append('description', NewCategory.description);
+
   return this.HttpClient.post<any>(`${environment.APIBaseURL}/Article/AddArticle`,
   formData);
 }

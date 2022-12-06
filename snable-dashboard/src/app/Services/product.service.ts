@@ -10,11 +10,11 @@ import { IProduct } from '../ViewModels/i-product';
 export class ProductService {
 
   private httpOptions
-  constructor( private HttpClient:HttpClient ) { 
+  constructor( private HttpClient:HttpClient ) {
     this.httpOptions={
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      })    
+      })
   }
 }
 getAllProducts():Observable<IProduct[]>{
@@ -33,7 +33,7 @@ addProduct(NewProduct:IProduct, image:any):Observable<IProduct>
   formData.append("name", NewProduct.name);
   formData.append("price", NewProduct.price);
   formData.append("quantity", NewProduct.quantity);
-  formData.append('image', image[0]);  
+  formData.append('image', image[0]);
   formData.append("description", NewProduct.description);
   formData.append("SupCategory_Id", NewProduct.SupCategory_Id);
 
@@ -42,10 +42,11 @@ addProduct(NewProduct:IProduct, image:any):Observable<IProduct>
 }
 UpdateProduct(id:number, UpdateProduct:IProduct):Observable<IProduct>
 {
-  return this.HttpClient.put<IProduct>(`${environment.APIBaseURL}/Product/UpdateProduct/${id}`, JSON.stringify(UpdateProduct),this.httpOptions);
+  return this.HttpClient.put<IProduct>(`${environment.APIBaseURL}/Product/UpdateProduct/${id}`, JSON.stringify(UpdateProduct),
+  this.httpOptions);
 }
 DeleteProduct(id:Number):Observable<IProduct>
 {
-return this.HttpClient.delete<IProduct>(`${environment.APIBaseURL}/Product/DeleteCategoryByID/${id}`);
+return this.HttpClient.delete<IProduct>(`${environment.APIBaseURL}/Product/DeleteProductByID/${id}`);
 }
 }

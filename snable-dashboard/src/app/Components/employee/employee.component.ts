@@ -20,7 +20,8 @@ export class EmployeeComponent implements OnInit {
   NewEmployee:Iemployee={} as Iemployee;
   image: any;
 
-  constructor(private EmployeeService:EmployeeService, private modalService: NgbModal, private router:Router,  private San:DomSanitizer) {
+  constructor(private EmployeeService:EmployeeService, private modalService: NgbModal, private router:Router,
+    private San:DomSanitizer) {
     this.EmployeeList=[];
   }
 
