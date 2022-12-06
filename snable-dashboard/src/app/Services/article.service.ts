@@ -24,10 +24,15 @@ getAllArticles():Observable<Iarticle[]>{
 getArticleByID(ID:number):Observable<Iarticle>{
     return this.HttpClient.get<Iarticle>(`${environment.APIBaseURL}/Article/GetArticleByID/${ID}`)
  }
-addArticle(NewCategory:Iarticle):Observable<Iarticle>
+addArticle(NewCategory:Iarticle, image:any):Observable<Iarticle>
 {
-  return this.HttpClient.post<Iarticle>(`${environment.APIBaseURL}/Article/AddArticle`, JSON.stringify(NewCategory),this.httpOptions);
+  var formData: any = new FormData();
+  formData.append("name", NewCategory.name);
+  formData.append('image', image[0]);
+  return this.HttpClient.post<any>(`${environment.APIBaseURL}/Article/AddArticle`,
+  formData);
 }
+
 UpdateArticle(id:number, updateCategory:Iarticle):Observable<Iarticle>
 {
   return this.HttpClient.put<Iarticle>(`${environment.APIBaseURL}/Article/UpdateArticle/${id}`, JSON.stringify(updateCategory),this.httpOptions);

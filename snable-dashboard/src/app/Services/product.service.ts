@@ -27,13 +27,22 @@ getProductByID(ID:number):Observable<IProduct>{
  getProductsBySupCategoryID(SupcatID:number):Observable<IProduct[]>{
   return this.HttpClient.get<IProduct[]>(`${environment.APIBaseURL}/Product/GetProductBySupCategorID=${SupcatID}`)
 }
-addProduct(NewCategory:IProduct):Observable<IProduct>
+addProduct(NewProduct:IProduct, image:any):Observable<IProduct>
 {
-  return this.HttpClient.post<IProduct>(`${environment.APIBaseURL}/Product/AddProduct`, JSON.stringify(NewCategory),this.httpOptions);
+  var formData: any = new FormData();
+  formData.append("name", NewProduct.name);
+  formData.append("price", NewProduct.price);
+  formData.append("quantity", NewProduct.quantity);
+  formData.append('image', image[0]);  
+  formData.append("description", NewProduct.description);
+  formData.append("SupCategory_Id", NewProduct.SupCategory_Id);
+
+  return this.HttpClient.post<any>(`${environment.APIBaseURL}/Product/AddProduct`,
+  formData);
 }
-UpdateProduct(id:number, updateCategory:IProduct):Observable<IProduct>
+UpdateProduct(id:number, UpdateProduct:IProduct):Observable<IProduct>
 {
-  return this.HttpClient.put<IProduct>(`${environment.APIBaseURL}/Product/UpdateProduct/${id}`, JSON.stringify(updateCategory),this.httpOptions);
+  return this.HttpClient.put<IProduct>(`${environment.APIBaseURL}/Product/UpdateProduct/${id}`, JSON.stringify(UpdateProduct),this.httpOptions);
 }
 DeleteProduct(id:Number):Observable<IProduct>
 {

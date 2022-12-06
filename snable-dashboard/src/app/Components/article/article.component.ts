@@ -40,7 +40,7 @@ onFileChange(event:any){
 AddNewArticle(content:any){
   this.modalService.open(content,
     {ariaLabelledBy: 'modal-Add-title'}).result.then((result)  => {
-      this.ArticleService.addArticle(this.NewArticle).subscribe(prd=>{
+      this.ArticleService.addArticle(this.NewArticle, this.image).subscribe(prd=>{
         this.router.navigate(['/Home']);
       });
       

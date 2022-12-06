@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
 
     this.modalService.open(content,
       {ariaLabelledBy: 'modal-Add-title'}).result.then((result)  => {
-        this.ProductService.addProduct(this.NewProduct).subscribe(prd=>{
+        this.ProductService.addProduct(this.NewProduct , this.image).subscribe(prd=>{
           console.log(this.NewProduct)
           this.router.navigate(['/Home']);
         });
