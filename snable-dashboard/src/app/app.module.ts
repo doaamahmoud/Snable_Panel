@@ -17,6 +17,7 @@ import { BannerComponent } from './Components/banner/banner.component';
 import { SupCategoryComponent } from './Components/sup-category/sup-category.component';
 import { ProductComponent } from './Components/product/product.component';
 import { BodyComponent } from './Components/body/body.component';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BodyComponent } from './Components/body/body.component';
     SupCategoryComponent,
     ProductComponent,
     BodyComponent,
+    LoginComponent,
    
   ],
   imports: [
