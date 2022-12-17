@@ -13,10 +13,10 @@ import { ProductComponent } from './Components/product/product.component';
 import { SupCategoryComponent } from './Components/sup-category/sup-category.component';
 
 const routes: Routes = [
-  {path:'', component:LoginComponent},
-  {path:'Home',component:LayoutComponent, children:[
+    {path:'', component:LoginComponent},
+    {path:'',component:LayoutComponent, children:[
     {path:'',redirectTo:'/Home',pathMatch:'full'},
-    {path:'Home',component:BodyComponent}, 
+    {path:'Home',component:BodyComponent},
     {path:'Category', component:CategoryComponent},
     {path:'Branch',component:BranchComponent},
     {path:'Employee', component:EmployeeComponent},
@@ -24,10 +24,9 @@ const routes: Routes = [
     {path:'Article', component:ArticleComponent},
     {path:'SupCategory', component:SupCategoryComponent},
     {path:'Product', component:ProductComponent}
-
   ]},
   {path:'Login',component:LoginComponent},
-    {path:'**',redirectTo:'/Home'},
+     {path:'**',redirectTo:'/Home'},
   ];
 
 @NgModule({

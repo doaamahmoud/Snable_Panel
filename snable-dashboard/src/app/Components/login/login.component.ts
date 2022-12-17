@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   OpenDashboard(){
-    if(this.Username=="doaa" && this.password=="1234")
+    if(this.Username=="admin" && this.password=="123456")
       this.router.navigate(['/Home']);
   }
 }
